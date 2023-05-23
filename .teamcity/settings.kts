@@ -82,15 +82,6 @@ object Build : BuildType({
         jiraCloudIntegration {
             issueTrackerConnectionId = "PROJECT_EXT_8"
         }
-        commitStatusPublisher {
-            vcsRootExtId = "${DslContext.settingsRoot.id}"
-            publisher = github {
-                githubUrl = "https://api.github.com"
-                authType = personalToken {
-                    token = "credentialsJSON:5413ea56-646f-4fd4-9a02-c0bc5ab8e5ba"
-                }
-            }
-        }
     }
 })
 
