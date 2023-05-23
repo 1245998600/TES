@@ -128,7 +128,7 @@ object DeployToAws : BuildType({
             publisher = github {
                 githubUrl = "https://api.github.com"
                 authType = personalToken {
-                    token = "credentialsJSON:5413ea56-646f-4fd4-9a02-c0bc5ab8e5ba"
+                    token = "credentialsJSON:7aa0f88a-90bc-41b9-8160-3fdc6a0a903b"
                 }
             }
         }
