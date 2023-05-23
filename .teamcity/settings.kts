@@ -50,7 +50,8 @@ project {
             host = "https://huiduyzh.atlassian.net/"
             userName = "1245998600@qq.com"
             password = "credentialsJSON:1fec03b4-d20e-4fef-b85f-abfabaa0e14c"
-            projectKeys = "TES"
+            projectKeys = "SPRIN TES"
+            useAutomaticKeys = true
             cloudClientID = "2si5iGOhI6P4J3VkTwgB0wUMNCD7oCCh"
             cloudSecret = "credentialsJSON:506dcadc-bb6e-42b2-bc23-40fee829775b"
         }
