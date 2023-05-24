@@ -2,8 +2,6 @@ import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.buildFeatures.jiraCloudIntegration
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
-import jetbrains.buildServer.configs.kotlin.buildSteps.FTPUpload
-import jetbrains.buildServer.configs.kotlin.buildSteps.ftpUpload
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.projectFeatures.jira
 import jetbrains.buildServer.configs.kotlin.projectFeatures.spaceConnection
@@ -36,7 +34,6 @@ version = "2022.10"
 project {
 
     buildType(Build)
-    buildType(DeployToAws)
 
     features {
         spaceConnection {
@@ -93,60 +90,6 @@ object Build : BuildType({
                     token = "credentialsJSON:7aa0f88a-90bc-41b9-8160-3fdc6a0a903b"
                 }
             }
-        }
-    }
-})
-
-object DeployToAws : BuildType({
-    name = "Deploy to AWS"
-
-    enablePersonalBuilds = false
-    type = BuildTypeSettings.Type.DEPLOYMENT
-    maxRunningBuilds = 1
-
-    vcs {
-        root(DslContext.settingsRoot)
-    }
-
-    steps {
-        ftpUpload {
-            name = "upload"
-            targetUrl = "ftp://192.168.38.39"
-            securityMode = FTPUpload.SecurityMode.NONE
-            dataChannelProtection = FTPUpload.DataChannelProtectionMode.DISABLE
-            authMethod = usernameAndPassword {
-                username = "user1"
-                password = "credentialsJSON:1ff30b95-a2ea-4819-a009-16140ad62262"
-            }
-            transferMode = FTPUpload.TransferMode.AUTO
-            sourcePath = "%system.teamcity.build.changedFiles.file%"
-        }
-    }
-
-    triggers {
-        vcs {
-        }
-    }
-
-    features {
-        perfmon {
-        }
-        jiraCloudIntegration {
-            issueTrackerConnectionId = "PROJECT_EXT_8"
-        }
-        commitStatusPublisher {
-            vcsRootExtId = "${DslContext.settingsRoot.id}"
-            publisher = github {
-                githubUrl = "https://api.github.com"
-                authType = personalToken {
-                    token = "credentialsJSON:7aa0f88a-90bc-41b9-8160-3fdc6a0a903b"
-                }
-            }
-        }
-    }
-
-    dependencies {
-        snapshot(Build) {
         }
     }
 })
