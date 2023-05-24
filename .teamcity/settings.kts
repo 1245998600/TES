@@ -2,6 +2,8 @@ import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.buildFeatures.jiraCloudIntegration
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
+import jetbrains.buildServer.configs.kotlin.buildSteps.FTPUpload
+import jetbrains.buildServer.configs.kotlin.buildSteps.ftpUpload
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.projectFeatures.jira
 import jetbrains.buildServer.configs.kotlin.projectFeatures.spaceConnection
@@ -110,6 +112,18 @@ object DeployToAws : BuildType({
         maven {
             goals = "clean test"
             runnerArgs = "-Dmaven.test.failure.ignore=true"
+        }
+        ftpUpload {
+            name = "upload"
+            targetUrl = "127.0.0.1"
+            securityMode = FTPUpload.SecurityMode.FTPS
+            dataChannelProtection = FTPUpload.DataChannelProtectionMode.DISABLE
+            authMethod = usernameAndPassword {
+                username = "user1"
+                password = "credentialsJSON:1ff30b95-a2ea-4819-a009-16140ad62262"
+            }
+            transferMode = FTPUpload.TransferMode.AUTO
+            sourcePath = "%system.teamcity.build.changedFiles.file%"
         }
     }
 
