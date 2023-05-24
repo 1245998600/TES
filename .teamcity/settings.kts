@@ -6,7 +6,6 @@ import jetbrains.buildServer.configs.kotlin.buildSteps.FTPUpload
 import jetbrains.buildServer.configs.kotlin.buildSteps.ftpUpload
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.projectFeatures.jira
-import jetbrains.buildServer.configs.kotlin.projectFeatures.perforceAdminAccess
 import jetbrains.buildServer.configs.kotlin.projectFeatures.spaceConnection
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
@@ -40,13 +39,6 @@ project {
     buildType(DeployToAws)
 
     features {
-        perforceAdminAccess {
-            id = "PROJECT_EXT_2"
-            name = "Perforce Administrator Access"
-            port = "127.0.0.1"
-            userName = "user1"
-            password = "credentialsJSON:1ff30b95-a2ea-4819-a009-16140ad62262"
-        }
         spaceConnection {
             id = "PROJECT_EXT_7"
             displayName = "JetBrains Space"
