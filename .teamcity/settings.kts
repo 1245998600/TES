@@ -98,6 +98,10 @@ object Build : BuildType({
 object DeployToFtp : BuildType({
     name = "Deploy to FTP"
 
+    enablePersonalBuilds = false
+    type = BuildTypeSettings.Type.DEPLOYMENT
+    maxRunningBuilds = 1
+
     vcs {
         root(DslContext.settingsRoot)
     }
