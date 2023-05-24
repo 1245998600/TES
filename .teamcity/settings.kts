@@ -106,13 +106,6 @@ object DeployToFtp : BuildType({
         root(DslContext.settingsRoot)
     }
 
-    steps {
-        maven {
-            goals = "clean test"
-            runnerArgs = "-Dmaven.test.failure.ignore=true"
-        }
-    }
-
     triggers {
         vcs {
         }
