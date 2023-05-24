@@ -109,10 +109,6 @@ object DeployToAws : BuildType({
     }
 
     steps {
-        maven {
-            goals = "clean test"
-            runnerArgs = "-Dmaven.test.failure.ignore=true"
-        }
         ftpUpload {
             name = "upload"
             targetUrl = "127.0.0.1"
