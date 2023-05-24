@@ -33,6 +33,7 @@ version = "2022.10"
 
 project {
 
+    buildType(DeployToFtp)
     buildType(Build)
 
     features {
@@ -59,6 +60,43 @@ project {
 
 object Build : BuildType({
     name = "Build"
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
+
+    steps {
+        maven {
+            goals = "clean test"
+            runnerArgs = "-Dmaven.test.failure.ignore=true"
+        }
+    }
+
+    triggers {
+        vcs {
+        }
+    }
+
+    features {
+        perfmon {
+        }
+        jiraCloudIntegration {
+            issueTrackerConnectionId = "PROJECT_EXT_8"
+        }
+        commitStatusPublisher {
+            vcsRootExtId = "${DslContext.settingsRoot.id}"
+            publisher = github {
+                githubUrl = "https://api.github.com"
+                authType = personalToken {
+                    token = "credentialsJSON:7aa0f88a-90bc-41b9-8160-3fdc6a0a903b"
+                }
+            }
+        }
+    }
+})
+
+object DeployToFtp : BuildType({
+    name = "Deploy to FTP"
 
     vcs {
         root(DslContext.settingsRoot)
