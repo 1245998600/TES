@@ -134,4 +134,9 @@ object DeployToFtp : BuildType({
             }
         }
     }
+
+    dependencies {
+        snapshot(Build) {
+        }
+    }
 })
