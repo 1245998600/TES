@@ -143,7 +143,13 @@ object Build_2 : BuildType({
     }
 
     dependencies {
-        snapshot(Build) {
+        dependency(Build) {
+            snapshot {
+            }
+
+            artifacts {
+                artifactRules = "tes.jar"
+            }
         }
     }
 })
