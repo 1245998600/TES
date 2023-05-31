@@ -123,11 +123,6 @@ object DeployToFtp : BuildType({
         }
     }
 
-    triggers {
-        vcs {
-        }
-    }
-
     features {
         perfmon {
         }
