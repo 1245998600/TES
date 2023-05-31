@@ -7,6 +7,7 @@ import jetbrains.buildServer.configs.kotlin.buildSteps.ftpUpload
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.projectFeatures.jira
 import jetbrains.buildServer.configs.kotlin.projectFeatures.spaceConnection
+import jetbrains.buildServer.configs.kotlin.triggers.finishBuildTrigger
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
 /*
@@ -101,6 +102,7 @@ object DeployToFtp : BuildType({
     name = "Deploy to FTP"
 
     enablePersonalBuilds = false
+    artifactRules = """wrapper\maven-wrapper.jar"""
     type = BuildTypeSettings.Type.DEPLOYMENT
     maxRunningBuilds = 1
 
@@ -120,6 +122,12 @@ object DeployToFtp : BuildType({
             }
             transferMode = FTPUpload.TransferMode.AUTO
             sourcePath = "%system.teamcity.build.changedFiles.file%"
+        }
+    }
+
+    triggers {
+        finishBuildTrigger {
+            buildType = "${Build.id}"
         }
     }
 
