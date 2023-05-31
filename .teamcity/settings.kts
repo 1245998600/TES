@@ -141,6 +141,11 @@ object Build_2 : BuildType({
             }
         }
     }
+
+    dependencies {
+        snapshot(Build) {
+        }
+    }
 })
 
 object DeployToFtp : BuildType({
