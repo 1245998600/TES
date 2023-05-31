@@ -104,7 +104,10 @@ object Build : BuildType({
 object Build_2 : BuildType({
     name = "Build (1)"
 
+    enablePersonalBuilds = false
     artifactRules = """wrapper\maven-wrapper.jar => tes.jar"""
+    type = BuildTypeSettings.Type.DEPLOYMENT
+    maxRunningBuilds = 1
 
     vcs {
         root(DslContext.settingsRoot)
