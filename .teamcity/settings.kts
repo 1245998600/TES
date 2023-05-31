@@ -120,6 +120,13 @@ object Build_2 : BuildType({
         }
     }
 
+    triggers {
+        finishBuildTrigger {
+            buildType = "${Build.id}"
+            successfulOnly = true
+        }
+    }
+
     features {
         perfmon {
         }
