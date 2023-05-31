@@ -120,11 +120,6 @@ object Build_2 : BuildType({
         }
     }
 
-    triggers {
-        vcs {
-        }
-    }
-
     features {
         perfmon {
         }
