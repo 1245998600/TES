@@ -64,6 +64,8 @@ project {
 object Build : BuildType({
     name = "Build"
 
+    artifactRules = "traget/TES-*.jar => TES.jar"
+
     vcs {
         root(DslContext.settingsRoot)
     }
