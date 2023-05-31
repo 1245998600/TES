@@ -93,7 +93,7 @@ object Build : BuildType({
             publisher = github {
                 githubUrl = "https://api.github.com"
                 authType = personalToken {
-                    token = "credentialsJSON:7aa0f88a-90bc-41b9-8160-3fdc6a0a903b"
+                    token = "credentialsJSON:618aad59-f49c-41c4-9d78-c31a29ca7e7f"
                 }
             }
         }
