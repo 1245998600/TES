@@ -37,7 +37,6 @@ version = "2022.10"
 project {
 
     buildType(DeployToFtp)
-    buildType(Build_2)
     buildType(Build)
 
     features {
@@ -96,61 +95,6 @@ object Build : BuildType({
                 authType = personalToken {
                     token = "credentialsJSON:618aad59-f49c-41c4-9d78-c31a29ca7e7f"
                 }
-            }
-        }
-    }
-})
-
-object Build_2 : BuildType({
-    name = "Build (1)"
-
-    enablePersonalBuilds = false
-    artifactRules = """wrapper\maven-wrapper.jar => tes.jar"""
-    type = BuildTypeSettings.Type.DEPLOYMENT
-    maxRunningBuilds = 1
-
-    vcs {
-        root(DslContext.settingsRoot)
-    }
-
-    steps {
-        maven {
-            goals = "clean test"
-            runnerArgs = "-Dmaven.test.failure.ignore=true"
-        }
-    }
-
-    triggers {
-        finishBuildTrigger {
-            buildType = "${Build.id}"
-            successfulOnly = true
-        }
-    }
-
-    features {
-        perfmon {
-        }
-        jiraCloudIntegration {
-            issueTrackerConnectionId = "PROJECT_EXT_8"
-        }
-        commitStatusPublisher {
-            vcsRootExtId = "${DslContext.settingsRoot.id}"
-            publisher = github {
-                githubUrl = "https://api.github.com"
-                authType = personalToken {
-                    token = "credentialsJSON:618aad59-f49c-41c4-9d78-c31a29ca7e7f"
-                }
-            }
-        }
-    }
-
-    dependencies {
-        dependency(Build) {
-            snapshot {
-            }
-
-            artifacts {
-                artifactRules = "tes.jar"
             }
         }
     }
