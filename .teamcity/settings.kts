@@ -7,6 +7,7 @@ import jetbrains.buildServer.configs.kotlin.buildSteps.ftpUpload
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.projectFeatures.jira
 import jetbrains.buildServer.configs.kotlin.projectFeatures.spaceConnection
+import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -117,6 +118,14 @@ object DeployToFtp : BuildType({
             }
             transferMode = FTPUpload.TransferMode.AUTO
             sourcePath = "tes.jar"
+        }
+    }
+
+    triggers {
+        vcs {
+            watchChangesInDependencies = true
+            perCheckinTriggering = true
+            enableQueueOptimization = false
         }
     }
 
