@@ -153,7 +153,6 @@ object DeployToFtp : BuildType({
     dependencies {
         dependency(Build) {
             snapshot {
-                runOnSameAgent = true
                 reuseBuilds = ReuseBuilds.ANY
                 onDependencyFailure = FailureAction.FAIL_TO_START
             }
