@@ -32,7 +32,7 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 'Debug' option is available in the context menu for the task.
 */
 
-version = "2022.10"
+version = "2023.05"
 
 project {
 
@@ -154,7 +154,7 @@ object DeployToFtp : BuildType({
         dependency(Build) {
             snapshot {
                 runOnSameAgent = true
-                reuseBuilds = ReuseBuilds.NO
+                reuseBuilds = ReuseBuilds.ANY
                 onDependencyFailure = FailureAction.FAIL_TO_START
             }
 
