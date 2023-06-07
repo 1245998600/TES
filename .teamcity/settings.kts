@@ -96,6 +96,10 @@ object Build : BuildType({
             }
         }
     }
+
+    requirements {
+        startsWith("system.agent.name", "DESKTOP-16LJQTF-1")
+    }
 })
 
 object DeployToFtp : BuildType({
