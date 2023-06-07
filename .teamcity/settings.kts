@@ -3,6 +3,7 @@ import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.buildFeatures.jiraCloudIntegration
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.FTPUpload
+import jetbrains.buildServer.configs.kotlin.buildSteps.dockerCommand
 import jetbrains.buildServer.configs.kotlin.buildSteps.dockerCompose
 import jetbrains.buildServer.configs.kotlin.buildSteps.ftpUpload
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
@@ -77,6 +78,15 @@ object Build : BuildType({
         }
         dockerCompose {
             file = "docker-compose.yml"
+        }
+        dockerCommand {
+            name = "Docker"
+            commandType = build {
+                source = file {
+                    path = "docker-compose.yml"
+                }
+                commandArgs = "--pull"
+            }
         }
     }
 
