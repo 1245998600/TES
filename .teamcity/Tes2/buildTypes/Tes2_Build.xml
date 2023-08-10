@@ -7,20 +7,7 @@
       <option name="artifactRules" value="wrapper\maven-wrapper.jar =&gt; tes.jar" />
     </options>
     <parameters />
-    <build-runners>
-      <runner id="RUNNER_13" name="" type="Maven2">
-        <parameters>
-          <param name="goals" value="clean test" />
-          <param name="localRepoScope" value="agent" />
-          <param name="maven.path" value="%teamcity.tool.maven.DEFAULT%" />
-          <param name="pomLocation" value="pom.xml" />
-          <param name="runnerArgs" value="-Dmaven.test.failure.ignore=true" />
-          <param name="target.jdk.home" value="%env.JDK_20_0%" />
-          <param name="teamcity.step.mode" value="default" />
-          <param name="userSettingsSelection" value="userSettingsSelection:default" />
-        </parameters>
-      </runner>
-    </build-runners>
+    <build-runners />
     <vcs-settings>
       <vcs-entry-ref root-id="Tes2_HttpsGithubCom1245998600tesRefsHeadsMain" />
     </vcs-settings>
