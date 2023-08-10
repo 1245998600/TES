@@ -4,6 +4,7 @@ import jetbrains.buildServer.configs.kotlin.buildFeatures.jiraCloudIntegration
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.FTPUpload
 import jetbrains.buildServer.configs.kotlin.buildSteps.ftpUpload
+import jetbrains.buildServer.configs.kotlin.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.projectFeatures.jira
 import jetbrains.buildServer.configs.kotlin.projectFeatures.spaceConnection
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
@@ -66,6 +67,13 @@ object Build : BuildType({
 
     vcs {
         root(DslContext.settingsRoot)
+    }
+
+    steps {
+        maven {
+            goals = "clean test"
+            runnerArgs = "-Dmaven.test.failure.ignore=true"
+        }
     }
 
     features {
