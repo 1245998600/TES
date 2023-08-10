@@ -4,7 +4,6 @@ import jetbrains.buildServer.configs.kotlin.buildFeatures.jiraCloudIntegration
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.FTPUpload
 import jetbrains.buildServer.configs.kotlin.buildSteps.ftpUpload
-import jetbrains.buildServer.configs.kotlin.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.projectFeatures.jira
 import jetbrains.buildServer.configs.kotlin.projectFeatures.spaceConnection
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
@@ -67,13 +66,6 @@ object Build : BuildType({
 
     vcs {
         root(DslContext.settingsRoot)
-    }
-
-    steps {
-        maven {
-            name = "Build"
-            jdkHome = "%env.JDK_20_0%"
-        }
     }
 
     features {
