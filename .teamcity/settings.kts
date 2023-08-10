@@ -1,5 +1,4 @@
 import jetbrains.buildServer.configs.kotlin.*
-import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.buildFeatures.jiraCloudIntegration
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.FTPUpload
@@ -116,15 +115,6 @@ object DeployToFtp : BuildType({
         }
         jiraCloudIntegration {
             issueTrackerConnectionId = "PROJECT_EXT_8"
-        }
-        commitStatusPublisher {
-            vcsRootExtId = "${DslContext.settingsRoot.id}"
-            publisher = github {
-                githubUrl = "https://api.github.com"
-                authType = personalToken {
-                    token = "credentialsJSON:7ee72c64-dd37-4b9d-aef8-65c705dab35c"
-                }
-            }
         }
     }
 })
